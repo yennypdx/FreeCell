@@ -1,0 +1,27 @@
+Yenny's Freecells Game Rules
+
+Free Cells Section
+1. Each cells can ONLY hold for a single card.
+2. You can move any card of any ranks and suits to Free.
+2. You can move this single card to either Play or Home.
+3. You cannot move any cards from Home to Free. It is not a normal thing to do!
+
+Home Cells Section
+1. Each cells will hold up to 13 cards.
+2. Ranks of card would be from ACE to KING.
+3. You get to decide what type of card goes to which cell.
+4. Once you made the decision, you cannot move different suits stacked on the same cell.
+5. You cannot move anything from Home to Play or Free. Who would do that?!
+6. You can make move from Free or Play to Home.
+
+Playcard Cells Section
+1. The cells only will show you what is available to be moved.
+2. Card from Play can move to Play, Free, and Home.
+3. If you decide to move Play to Play, make sure:
+----a. Suits' color are opposite.
+----b. The destination cell has +1 higher rank thank the card you about to move.
+4.Do not attempt to break the above rule No.3, otherwise you will get a warning.
+5.If you continue to ignore the warning(s), then there is nothing else I can say. I gave up!
+
+Enjoy the game!!
+Yenny
