@@ -207,29 +207,31 @@ inline void Gameboard::MakeMovePlayToPlay(int originCol, int destCol)
 	if (m_playCell[originCol].Peek().getRank() != JOKER) {	//moving from non-empty stack
 		fromCard.Push(m_playCell[originCol].Pop());
 
-		if (m_playCell[destCol].Peek().getRank() - fromCard.Peek().getRank() == 1) {	//if rank is inorder
-			if (fromCard.Peek().getSuit() + 1 == m_playCell[destCol].Peek().getSuit() ||
-				fromCard.Peek().getSuit()  - 1 == m_playCell[destCol].Peek().getSuit() ||
-				fromCard.Peek().getSuit() + 3 == m_playCell[destCol].Peek().getSuit() ||
-				fromCard.Peek().getSuit() - 3 == m_playCell[destCol].Peek().getSuit())	//If suit colors are opposite
-			{
-				
-				m_playCell[destCol].Push(fromCard.Pop());
-				m_playCell[originCol].Pop();
+		if (m_playCell[destCol].Peek().getRank() != JOKER) {	//moving to a NON-empty cell 
+			if (m_playCell[destCol].Peek().getRank() - fromCard.Peek().getRank() == 1) {	//if rank is inorder
+				if (fromCard.Peek().getSuit() + 1 == m_playCell[destCol].Peek().getSuit() ||
+					fromCard.Peek().getSuit() - 1 == m_playCell[destCol].Peek().getSuit() ||
+					fromCard.Peek().getSuit() + 3 == m_playCell[destCol].Peek().getSuit() ||
+					fromCard.Peek().getSuit() - 3 == m_playCell[destCol].Peek().getSuit())	//If suit colors are opposite
+				{
+
+					m_playCell[destCol].Push(fromCard.Pop());
+					m_playCell[originCol].Pop();
+				}
+				else {
+					m_playCell[originCol].Push(fromCard.Pop());
+					throw Exception("Invalid Move: Wrong color combination. Try again.");
+				}
 			}
 			else {
 				m_playCell[originCol].Push(fromCard.Pop());
-				throw Exception("Invalid Move: Wrong color combination. Try again.");
+				throw Exception("Invalid Move: Rank is not inorder. Try again.");
 			}
 		}
-		else {
-			m_playCell[originCol].Push(fromCard.Pop());
-			throw Exception("Invalid Move: Rank is not inorder. Try again.");
+		else if (m_playCell[destCol].Peek().getRank() == JOKER) {	//moving a card to an empty cell 
+			fromCard.Push(m_playCell[originCol].Pop());
+			m_playCell[destCol].Push(fromCard.Pop());
 		}
-	}
-	else if (m_playCell[destCol].Peek().getRank() == JOKER) {
-		fromCard.Push(m_playCell[originCol].Pop());
-		m_playCell[destCol].Push(fromCard.Pop());
 	}
 	else {
 		throw Exception("Invalid Move: Origin stack is empty. Try again.");
